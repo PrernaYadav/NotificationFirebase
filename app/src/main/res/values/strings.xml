@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Femina</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Contact</string>
+    <string name="title_notifications">Whatsapp</string>
+    <string name="title_email">Email</string>
+    <string name="title_shareee">Share</string>
+</resources>
