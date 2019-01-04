@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "339730460167",
+    "firebase_url": "https://ecommercenotification-d7e85.firebaseio.com",
+    "project_id": "ecommercenotification-d7e85",
+    "storage_bucket": "ecommercenotification-d7e85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339730460167:android:9934bcb93189c046",
+        "android_client_info": {
+          "package_name": "com.mabble.ecomnotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339730460167-5ssgpa47agjptj9cs5p5jk22rla5ifdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMuZ2H8cPz0nYlVWLLQqk5zRxRmUojkm4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,10 +1,10 @@
-package com.vmmor.femina;
+package com.vmmor.ecomnotification;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,13 +17,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -32,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     WebView webview;
-    String url = "http://feminastudio.com/";
+    String url = "https://www.google.com/";
     boolean loadingFinished = true;
     boolean redirect = false;
     final Handler handler = new Handler();
     ProgressDialog p;
     BottomNavigationView navigation;
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_mail:
 //                    mTextMessage.setText(R.string.title_home);
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto", "helpdesk@feminastudio.com", null));
+                            "mailto", "prerna@mabble.com", null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "Thank You");
                     startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -60,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
 //                    mTextMessage.setText(R.string.title_dashboard);
 
-                    CustomDialogClass cdd = new CustomDialogClass(MainActivity.this);
-                    cdd.show();
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:1234567890"));
+                    startActivity(callIntent);
+
 
                     navigation.setSelectedItemId(R.id.navigation_home);
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     String shareSubText = "Be Beautiful with Femina";
-                    String shareBodyText = "https://play.google.com/store/apps/details?id=com.vmmor.femina";
+                    String shareBodyText = "https://play.google.com/store/apps/details?id=com.vmmor.ecomnotification";
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubText);
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBodyText);
                     startActivity(Intent.createChooser(shareIntent, "Share With"));
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent();
                     String url = null;
                     try {
-                        url = "https://api.whatsapp.com/send?phone=" + "918750420053" + "&text=" + URLEncoder.encode("I want to knw about Femina !!", "UTF-8");
+                        url = "https://api.whatsapp.com/send?phone=" + "911234567890" + "&text=" + URLEncoder.encode("I want to knw about Femina !!", "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -93,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     i.setData(Uri.parse(url));
                     startActivity(i);
 
+                    return true;
+
+                case R.id.navigation_register:
+
+                    startActivity(new Intent(MainActivity.this, MobileActivity.class));
                     return true;
             }
 
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         p.show();
 
 
-        Runnable runnable = new Runnable() {
+    /*    Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 p.dismiss();
@@ -124,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        handler.postDelayed(runnable, 2000);
+        handler.postDelayed(runnable, 2000);*/
 
         web();
 
@@ -174,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String url) {
-            if (url.indexOf("http://feminastudio.com/") > -1)
+            if (url.indexOf("https://www.google.com/") > -1)
                 return false;
 
             webView.setWebViewClient(new WebViewClient());
@@ -182,6 +188,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            p.dismiss();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO Auto-generated method stub
+            super.onPageStarted(view, url, favicon);
+            p.show();
+
+        }
     }
 
     @Override

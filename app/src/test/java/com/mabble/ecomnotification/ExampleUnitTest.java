@@ -1,4 +1,4 @@
-package com.vmmor.femina;
+package com.vmmor.ecomnotification;
 
 import org.junit.Test;
 

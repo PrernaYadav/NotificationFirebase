@@ -1,12 +1,10 @@
-package com.vmmor.femina;
+package com.vmmor.ecomnotification;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
